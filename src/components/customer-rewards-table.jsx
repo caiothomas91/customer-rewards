@@ -10,6 +10,8 @@ import {
 	TableBody,
 } from "@mui/material";
 
+const currentDate = new Date("2022-11-27");
+
 const transactionsUrl = "http://localhost:3001/transactions";
 
 const getPositiveMonth = (month) => {
@@ -19,7 +21,7 @@ const getPositiveMonth = (month) => {
 
 const getMonthAndYear = (month) => {
 	const year =
-		month < 0 ? new Date().getFullYear() - 1 : new Date().getFullYear();
+		month < 0 ? currentDate.getFullYear() - 1 : currentDate.getFullYear();
 
 	return `${monthNames[getPositiveMonth(month)]} ${year}`;
 };
@@ -72,17 +74,17 @@ const createRows = (transactionData) => {
 			calculatePointsForCustomerMonth(
 				transactionData,
 				name,
-				getPositiveMonth(new Date().getMonth() - 2)
+				getPositiveMonth(currentDate.getMonth() - 2)
 			),
 			calculatePointsForCustomerMonth(
 				transactionData,
 				name,
-				getPositiveMonth(new Date().getMonth() - 1)
+				getPositiveMonth(currentDate.getMonth() - 1)
 			),
 			calculatePointsForCustomerMonth(
 				transactionData,
 				name,
-				new Date().getMonth()
+				currentDate.getMonth()
 			)
 		);
 
@@ -108,13 +110,13 @@ export default function CustomerRewardsTable() {
 					<TableRow>
 						<TableCell>Customer Name</TableCell>
 						<TableCell align='right'>
-							{getMonthAndYear(new Date().getMonth() - 2)}
+							{getMonthAndYear(currentDate.getMonth() - 2)}
 						</TableCell>
 						<TableCell align='right'>
-							{getMonthAndYear(new Date().getMonth() - 1)}
+							{getMonthAndYear(currentDate.getMonth() - 1)}
 						</TableCell>
 						<TableCell align='right'>
-							{getMonthAndYear(new Date().getMonth())}
+							{getMonthAndYear(currentDate.getMonth())}
 						</TableCell>
 						<TableCell align='right'>Total</TableCell>
 					</TableRow>
